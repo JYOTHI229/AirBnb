@@ -85,6 +85,8 @@ app.use((req,res,next)=>{
 });
 
 app.use(listingRouter);
+app.use(reviewRouter);
+app.use(userRouter);
 
 
 app.all("*",(req,res,next)=>{
