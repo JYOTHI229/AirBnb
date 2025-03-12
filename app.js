@@ -84,6 +84,7 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.use(listingRouter);
 
 
 app.all("*",(req,res,next)=>{
