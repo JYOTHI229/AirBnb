@@ -42,7 +42,7 @@ module.exports.createListing=async (req,res,next)=>{
 
 module.exports.editListing=async (req,res)=>{
     let {id}=req.params;
-    const listing = await Listing.findById(id.trim());
+    const listing = await Listing.findById(id.trim()); 
     if(!listing){
         req.flash("error","Listing you requested for does not exist!");
         res.redirect("/listings");

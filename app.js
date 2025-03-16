@@ -79,10 +79,6 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.use(listingRouter);
-app.use(reviewRouter);
-app.use(userRouter);
-
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -90,10 +86,9 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.use(listingRouter);
-app.use(reviewRouter);
-app.use(userRouter);
-
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 app.all("*",(req,res,next)=>{
   next(new ExpressError(404,"Page not Found!"));
@@ -104,6 +99,10 @@ app.use((err,req,res,next)=>{
     res.status(statusCode).render("error.ejs", {message});
    //  res.status(statusCode).send(message);
 });
+
+
+
+
  
 app.listen(8080,()=>{
     console.log("server is listening to port 8080");
